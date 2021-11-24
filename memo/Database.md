@@ -2,18 +2,31 @@
 
 ```sh
 CREATE TABLE nodejs.users (
-    -> id INT NOT NULL AUTO_INCREMENT,
-    -> name VARCHAR(20) NOT NULL,
-    -> age INT UNSIGNED NOT NULL,
-    -> married TINYINT NOT NULL,
-    -> comment TEXT NULL,
-    -> created_at DATETIME NOT NULL DEFAULT now(),
-    -> PRIMARY KEY(id),
-    -> UNIQUE INDEX name_UNIQUE (name ASC))
-    -> COMMENT = '사용자 정보'
-    -> DEFAULT CHARACTER SET = utf8
-    -> ENGINE = InnoDB;
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(20) NOT NULL,
+    age INT UNSIGNED NOT NULL,
+    married TINYINT NOT NULL,
+    comment TEXT NULL,
+    created_at DATETIME NOT NULL DEFAULT now(),
+    PRIMARY KEY(id),
+    UNIQUE INDEX name_UNIQUE (name ASC))
+    COMMENT = '사용자 정보'
+    DEFAULT CHARACTER SET = utf8
+    ENGINE = InnoDB;
 ```
+
+CREATE TABLE nodejs.users (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(20) NOT NULL,
+  age INT UNSIGNED NOT NULL,
+  married TINYINT NOT NULL,
+  comment TEXT NULL,
+  created_at DATETIME NOT NULL DEFAULT now(),
+  PRIMARY KEY(id),
+  UNIQUE INDEX name_UNIQUE (name ASC))
+  COMMENT = '사용자 정보'
+  DEFAULT CHARACTER SET = utf8
+  ENGINE = InnoDB;
 
 
 각각의 컬럼 이름 옆에는 
@@ -54,4 +67,27 @@ CREATE TABLE nodejs.users (
 
 - `PRIMARY KEY(id)`라는 욥션은 id라는 새로운 컬럼을 하나 만들어 고유한 번호를 부여한 것입니다. 주민등록 번호나 학번과 비슷한 개념이라고 보면 됩니다. id 컬럼이 기본 키임을 여기선 알려주고 있습니다.
 
-- `UNIQUE INDEX`는 해당 값이 고유해야 하는지에 대한 옵션이며, name 컬럼이 해당됩니다. 인덱스의 이름은 `name_UNIQUE`로, name 컬럼을 `오름차순(ASC)`으로 기억하겠다는 것입니다. `내림차순은(DESC)`입니다. 기본 키인 id도 고유해야 하지만 `PRIMART KET`는 자동으로 `UNIQUE INDEX`를 포함하므로 따로 적지 않아도 됩니다.  
+- `UNIQUE INDEX`는 해당 값이 고유해야 하는지에 대한 옵션이며, name 컬럼이 해당됩니다. 인덱스의 이름은 `name_UNIQUE`로, name 컬럼을 `오름차순(ASC)`으로 기억하겠다는 것입니다. `내림차순은(DESC)`입니다. 기본 키인 id도 고유해야 하지만 `PRIMART KET`는 자동으로 `UNIQUE INDEX`를 포함하므로 따로 적지 않아도 됩니다.
+
+여기까지는 컬럼의 설정이었습니다.
+
+`COMMENT`,`DEFAULT CHARSET`, `ENGINE`은 데이블 자체에 대한 설정입니다.
+
+- `COMMENT`는 테이블에 대한 보충 설명을 의미합니다. 이 테이블이 무슨 역할을 하는지 적어두면 됩니다. (필수X)
+
+- `DEFAULT CHARSET`을 utf9로 설정하지 않으면 한글이 입력되지 않으니 반드시 설정을 해주어야 합니다.
+
+- `ENGINE`은 여러가지가 있지만, MySAM과 InnoDB가 제일 많이 사용됩니다. 
+
+만들어진 테이블을 확인하는 명령어는 DESC 테이블명입니다.
+
+```sh
+    mysql> DESC 테이블명;
+```
+
+데이블을 잘못 만들었을 경우 DROP TABLE [테이블명] 명렁어를 입력하면 제거됩니다. 저기후 다시 생성할 수 있습니다.
+
+```sh
+    mysql> DROP TABLE 테이블명;
+```
+
